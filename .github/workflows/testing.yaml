@@ -1,0 +1,29 @@
+name: Unit tests
+
+on:
+  pull_request:
+    branches: [main,dev]
+  push:
+    branches: [main,dev]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3 # access the repo content
+      - name: Setup node env
+        uses: actions/setup-node@v3
+        with:
+          node-version: 15.x
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-version: 6.0
+          mongodb-port: 27017
+      - name: Install the dependecies and Running test
+        run: |
+          npm ci
+          npm run test
+
