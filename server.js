@@ -26,11 +26,11 @@ app.use((err,req,res,next)=>{
 const connectDB = async() => {
 
     try {
-        await mongoose.connect(process.env.MONGO_URI+'booksApi'+ (process.env.NODE_ENV === 'test'?'-test':''),{
+        await mongoose.connect(process.env.MONGO_URI),{
             useNewURLParser:true,
             useUnifiedTopology:true
-        })
-        app.listen(process.env.PORT,() => {
+        }
+        app.listen(process.env.PORT || 8080,() => {
             console.log('server started at ' + process.env.PORT + '...');
             console.log('server started in '+process.env.NODE_ENV +' mode' )
         });

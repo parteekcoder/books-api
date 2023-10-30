@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha test/ --exit",
+    "test": "NODE_ENV=test MONGO_URI=mongodb://localhost:27017/ mocha test/ --exit",
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js"
   },
