@@ -3,8 +3,8 @@ import dotenv from 'dotenv';
 import mongoose from "mongoose";
 
 
-import router from './routes'
-import sendResponse from "./utilites/helper";
+import router from './routes/index.js'
+import sendResponse from "./utilites/helper/index.js";
 
 const app = express();
 
@@ -16,7 +16,7 @@ dotenv.config();
 
 app.use('/',router)
 app.use('/*',(req,res) => {
-    return res.status(400).json({status:false,message:"this route doesnot exist"});
+    return res.status(400).json({success:false,data:"this route doesnot exist"});
 })
 app.use((err,req,res,next)=>{
     // we can use datadog logger or any other logger here to create logs for failed API request
@@ -26,7 +26,7 @@ app.use((err,req,res,next)=>{
 const connectDB = async() => {
 
     try {
-        await mongoose.connect(process.env.MONGO_URI+ (process.env.NODE_ENV === 'test'?'likesApi-test':'likesApi'),{
+        await mongoose.connect(process.env.MONGO_URI+'booksApi'+ (process.env.NODE_ENV === 'test'?'-test':''),{
             useNewURLParser:true,
             useUnifiedTopology:true
         })
