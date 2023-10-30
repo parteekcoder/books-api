@@ -22,8 +22,8 @@ jobs:
         with:
           mongodb-version: 6.0
           mongodb-port: 27017
-      - name: Install the dependecies and Running test
-        run: |
-          npm i
-          npm run test
+      - name: Install the dependecies
+        run: npm i
+      - name: Running test
+        run: npm run test
 
